@@ -15,7 +15,6 @@ class Node():
         self.t = t # start node is at t=0
         self.task = task
         self.compute_h()
-        #self.h = self.compute_h()
         self.f = self.g + self.h
         self.parent = parent
         # self.p = [self.x, self.y]
@@ -170,7 +169,8 @@ def get_tasks(num_agents): # outputs in (x_coordinate, y_coordinate) format
     #tasks = tasks[::-1]
     return tasks
 
-def sane_starts_tasks(starts, tasks, nav_space):
+def sane_starts_tasks(starts, tasks, nav_space, num_agents):
+    assert len(starts) == len(tasks) == num_agents, '{} {} {}'.format(len(starts), len(tasks), num_agents)
     for start in starts:
         assert start[0] >= 0 and start[0] < nav_space.shape[1], '{} {}'.format(start[0], nav_space.shape[1])
         assert start[1] >= 0 and start[1] < nav_space.shape[0], '{} {}'.format(start[1], nav_space.shape[0])
